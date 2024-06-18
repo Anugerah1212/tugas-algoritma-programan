@@ -1,0 +1,83 @@
+// Anugerah Tri Putra Tanjung
+// 12250513343
+
+#include <stdio.h>
+
+int balance = 500000; 
+
+void displayMenu() {
+    printf("\n\n===  Menu Transaksi:  ===\n");
+    printf("\n1. Cek Saldo\n");
+    printf("\n2. Tarik Tunai\n");
+    printf("\n3. Setor Tunai\n");
+    printf("\n4. Keluar\n");
+    printf("\nMasukkan Pilihan Anda: ");
+}
+
+void checkBalance() {
+    printf("\nSisa Saldo Anda Adalah: %d\n", balance);
+}
+
+void withdrawCash() {
+    int amount;
+    printf("\nMasukkan Nominal Yang Akan Di Tarik: ");
+    scanf("%d", &amount);
+    if (amount > balance) {
+        printf("Saldo Tidak Cukup!\n");
+    } else {
+        balance -= amount;
+        printf("Penarikan Berhasil, Jumlah Saldo Anda Sekarang: %d\n", balance);
+    }
+}
+
+void depositCash() {
+    int amount;
+    printf("\nMasukkan Nominal Yang Akan Di Setor: ");
+    scanf("%d", &amount);
+    balance += amount;
+    printf("Setoran Berhasil, Jumlah Saldo Anda Sekarang: %d\n", balance);
+}
+
+int main() {
+    int choice, pin = 1212, inputPin;
+
+    printf("                                      #######################################  \n");
+    printf("                                      ===   Selamat Datang Di ATM ALEX   ===   \n");
+    printf("                                      #######################################   \n");
+    printf("   \n\n");
+    printf("Masukkan PIN Anda: ");
+    scanf("%d", &inputPin);
+
+    if (inputPin!= pin) {
+        printf("PIN SALAH, Silahkan Coba Lagi!\n");
+        return 1;
+    }
+
+    while (1) {
+        displayMenu();
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                checkBalance();
+                break;
+            case 2:
+                withdrawCash();
+                break;
+            case 3:
+                depositCash();
+                break;
+            case 4:
+                printf("\n\n");
+                printf("                                            ==========================\n");
+                printf("                                            #######   Xie-Xie   ######\n");
+                printf("                                            ==========================\n");
+                return 0;
+            default:
+                printf("\nPILIHAN TIDAK TERSEDIA\n");
+                printf("       COBA LAGI!\n"       );
+        }
+    }
+
+    return 0;
+}
